@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css" />
+
+  <!-- custom css -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- font awesome icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+  <!-- bootstrap icon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+  <!-- dataTable css cdn -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.css" />
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Button trigger modal -->
+    <div class="user-data-header d-flex justify-content-between my-4">
+      <h3 class="user-data-title fw-bold">All User Data</h3>
+      <button type="button" class="btn add-user-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <a href="#" class="addDetail">&plus;</a>
+      </button>
+    </div>
+
+    <!-- show all user detail -->
+    <div class="table-responsive">
+      <table class="table" id="form-table">
+        <thead>
+          <tr>
+            <th class="fw-bold" id="no">No</th>
+            <th class="fw-bold">First Name</th>
+            <th class="fw-bold">Last Name</th>
+            <th class="fw-bold">Birth Of Date</th>
+            <th class="fw-bold">Email</th>
+            <th class="fw-bold">Address</th>
+            <th class="fw-bold">Graduation Year</th>
+            <th class="fw-bold">Edit</th>
+            <th class="fw-bold">Delete</th>
+          </tr>
+        </thead>
+        <tbody class="table user-data-table-body">
+          <!-- user data will be dynamically added here -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" tabindex="-1"
+      aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title fw-bold text-center ms-3 fs-3" id="exampleModalLabel">Student form</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container2">
+              <form action="#" class="form" onsubmit="event.preventDefault(); onFormSubmit()" id="user-form">
+                <div class="personal-detail w-100 mb-5">
+                  <!-- user data form -->
+                  <div class="row d-flex justify-content-between mx-0 my-0 mb-lg-4 my-4 w-100">
+                    <div class="col-lg-4">
+                      <label for="fname" class="form-label  cursor-pointer">First Name</label>
+                      <input type="text" class="req form-control mb-lg-0 mb-2" id="fname" placeholder="Enter First Name"
+                        required>
+                      <span id="fnameError" class="error d-inline-block text-danger"></span>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <label for="lname" class="form-label">Last Name</label>
+                      <input type="text" class="form-control mb-lg-0 mb-2" id="lname" placeholder="Enter Last Name">
+                    </div>
+
+                    <div class="col-lg-4">
+                      <label for="dob" class="form-label">Date Of Birth</label>
+                      <input type="date" class="req form-control mb-lg-0 mb-2" id="dob" required>
+                      <span id="dobError" class="error d-inline-block text-danger"></span>
+                    </div>
+                  </div>
+
+                  <div class="row d-flex justify-content-between mx-0 my-0 w-100">
+                    <div class="col-lg-4 ">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" class="req form-control mb-lg-0 mb-2" id="email" placeholder="Enter Email"
+                        required>
+                      <span id="emailError" class="error d-inline-block text-danger"></span>
+                    </div>
+                    <div class="col-lg-4 ">
+                      <label for="address" class="form-label">Address</label>
+                      <input type="text" class="req form-control mb-lg-0 mb-2" id="address" placeholder="Enter Address"
+                        required>
+                      <span id="addressError" class="error d-inline-block text-danger"></span>
+                    </div>
+                    <div class="col-lg-4">
+                      <label for="graduationYear" class="form-label">Graduation Year</label>
+                      <input type="month" class="req form-control mb-lg-0 mb-2" id="graduationYear" required>
+                      <span id="gyearError" class="error d-inline-block text-danger"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+
+                <!-- educational detail of user -->
+                <div class="education-heading d-flex justify-content-between align-content-center w-100 px-2 mt-5">
+                  <h3 class="edu-detail-heading fw-bold text-white">Education:</h3>
+                  <a href="#" class="add" onclick="return addNewEduRow()">&plus;</a>
+                </div>
+
+                <div class="table-responsive edu-detail w-100 px-2">
+                    <table class="table">
+                      <thead>
+                        <tr class="edu-detail-header">
+                          <th scope="col"><label for="degree" class="form-label fw-normal">Degree/Board</label></th>
+                          <th scope="col"><label for="school" class="form-label fw-normal">School/College</label></th>
+                          <th scope="col"><label for="startDate" class="form-label fw-normal">Start Date</label></th>
+                          <th scope="col"><label for="passYear" class="form-label fw-normal">Passout Year</label></th>
+                          <th scope="col"><label for="percentage" class="form-label fw-normal">Percentage</label></th>
+                          <th scope="col"><label for="backlog" class="form-label fw-normal">Backlog</label></th>
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody class="tb">
+                        <tr>
+                          <td><input type="text" class="req form-control me-3 my-2" id="degree" value="10th" disabled required></td>
+                          <td><input type="text" class="req form-control me-3 my-2" id="school" required></td>
+                          <td><input type="date" class="req form-control me-3 my-2" id="startDate" required></td>
+                          <span id="startDateError" class="error d-inline-block text-danger"></span>
+                          <td><input type="date" class="req form-control me-3 my-2" id="passYear" required></td>
+                          <td><input type="number" min="0" max="100" class="req form-control me-3 my-2" id="percentage" placeholder="don't use % sign" required></td>
+                          <td><input type="number" min="0" max="10" class="req form-control me-3 my-2" id="backlog" placeholder="if any" required></td>
+                          <td class="invisible"></td>
+                        </tr>
+                        <tr>
+                          <td><input type="text" class="req form-control me-3 my-2" id="degree" value="12th" disabled required></td>
+                          <td><input type="text" class="req form-control me-3 my-2" id="school" required></td>
+                          <td><input type="date" class="req form-control me-3 my-2" id="startDate" required></td>
+                          <td><input type="date" class="req form-control me-3 my-2" id="passYear" required></td>
+                          <td><input type="number" min="0" max="100" class="req form-control me-3 my-2" id="percentage" placeholder="don't use % sign" required></td>
+                          <td><input type="number" min="0" max="10" class="req form-control me-3 my-2" id="backlog" placeholder="if any" required></td>
+                          <td class="invisible"></td>
+                        </tr>
+                        
+                      </tbody>
+                    </table>
+                </div>
+
+                <!-- modal footer -->
+                <div class="modal-footer d-flex justify-content-center">
+                  <button type="button" class="btn close-btn" data-bs-dismiss="modal">Close</button>
+                  <!-- <button type="button" class="btn submit-btn" data-bs-dismiss="modal">Submit</button> -->
+                  <button type="submit" onclick="onFormSubmit" class="btn submit-btn" >Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+<!-- bootstrap js cdn-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdn.datatables.net/2.0.0/js/dataTables.js"></script>
+
+<!-- Your custom JS file -->
+<script src="JS/script.js"></script>
+ 
+<!-- font awesome -->
+<script src="https://kit.fontawesome.com/ec7a546598.js" crossorigin="anonymous"></script>
+
+</html>
