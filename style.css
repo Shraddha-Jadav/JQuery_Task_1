@@ -3,10 +3,10 @@
 :root {
     --main-color: rgb(1, 57, 80);
     --light-main-color: rgb(7, 80, 109);
-    --white: white;
+    --white: rgb(255, 255, 255);
     --black: black;
-    --background-color : linear-gradient(90deg, rgb(66, 58, 209) 0%, rgb(63, 108, 167) 0%, rgb(89, 191, 211) 65%);
-    --light-background-color: linear-gradient(90deg, rgb(199, 197, 241) 0%, rgb(148, 173, 206) 0%, rgb(154, 197, 206) 65%);
+    --background-color : white;
+    --light-background-color: linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(189, 189, 189) 0%, rgb(196, 196, 196) 65%);
 }
 
 * {
@@ -17,6 +17,7 @@
 
 body {
     font-family: "Inter", sans-serif;
+    font-weight: 500;
     width: 100%;
     min-height: 100vh;
     background: var(--background-color);
@@ -26,17 +27,9 @@ body {
     margin-left: auto !important;
     margin-right: auto !important;
     margin-top: 100px !important;
-    margin-bottom: auto;
     padding: 10px 50px !important;
     border-radius: 5px;
     box-shadow: 1px 1px 6px var(--black);
-}
-
-
-/* all user data */
-
-.user-data-title {
-    color: var(--main-color) !important;
 }
 
 .add-user-btn {
@@ -53,80 +46,47 @@ body {
     color: var(--white);
 }
 
-
-
-
-
-
 /* pop-up menu  */
 
 .form-heading {
-    color: rgb(255, 255, 255);
-}
-
-.form-label {
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .add {
     text-decoration: none;
     width: 30px;
     height: 30px;
-    background-color: rgb(0, 95, 21);
-    color: white;
+    color: rgb(0, 0, 0);
     font-size: 2rem;
     font-weight: normal;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 20%;
+    border: 2px solid black;
 }
 
 .add:hover {
-    background-color: rgb(5, 83, 5);
+    box-shadow: 1px 1px 4px rgb(75, 72, 72);
 }
 
 .delete {
     text-decoration: none;
     width: 30px;
     height: 30px;
-    background-color: rgb(255, 0, 0);
-    color: white;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     font-size: 2rem;
     font-weight: normal;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 20%;
+    border: 2px solid black;
 }
 
 .delete:hover {
-    background-color: rgb(255, 44, 44);
-    box-shadow: 1px 1px 4px rgb(175, 175, 175);
-}
-
-tbody,
-td,
-tfoot,
-th,
-thead,
-tr {
-    border-color: inherit;
-    border-style: solid;
-    border-width: 0;
-    /* border: 0; */
-}
-
-table,
-td,
-tr,
-thead,
-th {
-    background-color: transparent !important;
-}
-
-.modal-body {
-    background: var(--background-color);
+    box-shadow: 1px 1px 4px rgb(75, 72, 72);
 }
 
 .submit-btn , .close-btn{
@@ -142,5 +102,5 @@ th {
 
 .error
 {
-    visibility: hidden;
+    font-size: 0.8rem!important;
 }

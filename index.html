@@ -42,10 +42,10 @@
       <table class="table" id="form-table">
         <thead>
           <tr>
-            <th class="fw-bold" id="no">No</th>
+            <th class="fw-bold" id="no">#</th>
             <th class="fw-bold">First Name</th>
             <th class="fw-bold">Last Name</th>
-            <th class="fw-bold">Birth Of Date</th>
+            <th class="fw-bold">Date of Birth</th>
             <th class="fw-bold">Email</th>
             <th class="fw-bold">Address</th>
             <th class="fw-bold">Graduation Year</th>
@@ -70,15 +70,14 @@
           </div>
           <div class="modal-body">
             <div class="container2">
-              <form action="#" class="form" onsubmit="event.preventDefault(); onFormSubmit()" id="user-form">
+              <form action="#" class="form" onsubmit="event.preventDefault(); onFormSubmit()" id="user-form"  novalidate>
                 <div class="personal-detail w-100 mb-5">
                   <!-- user data form -->
                   <div class="row d-flex justify-content-between mx-0 my-0 mb-lg-4 my-4 w-100">
                     <div class="col-lg-4">
-                      <label for="fname" class="form-label  cursor-pointer">First Name</label>
-                      <input type="text" class="req form-control mb-lg-0 mb-2" id="fname" placeholder="Enter First Name"
-                        required>
-                      <span id="fnameError" class="error d-inline-block text-danger"></span>
+                      <label for="fname" class="form-label cursor-pointer">First Name</label>
+                      <input type="text" class="form-control mb-lg-0 mb-2" id="fname" placeholder="Enter First Name" required>
+                      <span id="fnameError" class="error text-danger fw-normal"></span>
                     </div>
 
                     <div class="col-lg-4">
@@ -89,7 +88,7 @@
                     <div class="col-lg-4">
                       <label for="dob" class="form-label">Date Of Birth</label>
                       <input type="date" class="req form-control mb-lg-0 mb-2" id="dob" required>
-                      <span id="dobError" class="error d-inline-block text-danger"></span>
+                      <div id="dobError" class="error text-danger"></div>
                     </div>
                   </div>
 
@@ -98,18 +97,18 @@
                       <label for="email" class="form-label">Email</label>
                       <input type="email" class="req form-control mb-lg-0 mb-2" id="email" placeholder="Enter Email"
                         required>
-                      <span id="emailError" class="error d-inline-block text-danger"></span>
+                      <div id="emailError" class="error text-danger"></div>
                     </div>
                     <div class="col-lg-4 ">
                       <label for="address" class="form-label">Address</label>
                       <input type="text" class="req form-control mb-lg-0 mb-2" id="address" placeholder="Enter Address"
                         required>
-                      <span id="addressError" class="error d-inline-block text-danger"></span>
+                      <div id="addressError" class="error text-danger"></div>
                     </div>
                     <div class="col-lg-4">
                       <label for="graduationYear" class="form-label">Graduation Year</label>
                       <input type="month" class="req form-control mb-lg-0 mb-2" id="graduationYear" required>
-                      <span id="gyearError" class="error d-inline-block text-danger"></span>
+                      <div id="gyearError" class="error text-danger"></div>
                     </div>
                   </div>
                 </div>
@@ -117,8 +116,8 @@
                 <hr>
 
                 <!-- educational detail of user -->
-                <div class="education-heading d-flex justify-content-between align-content-center w-100 px-2 mt-5">
-                  <h3 class="edu-detail-heading fw-bold text-white">Education:</h3>
+                <div class="education-heading d-flex justify-content-between align-content-center w-100 px-2 mt-1">
+                  <h3 class="edu-detail-heading fw-bold">Education:</h3>
                   <a href="#" class="add" onclick="return addNewEduRow()">&plus;</a>
                 </div>
 
@@ -136,26 +135,24 @@
                         </tr>
                       </thead>
                       <tbody class="tb">
-                        <tr>
-                          <td><input type="text" class="req form-control me-3 my-2" id="degree" value="10th" disabled required></td>
-                          <td><input type="text" class="req form-control me-3 my-2" id="school" required></td>
-                          <td><input type="date" class="req form-control me-3 my-2" id="startDate" required></td>
-                          <span id="startDateError" class="error d-inline-block text-danger"></span>
-                          <td><input type="date" class="req form-control me-3 my-2" id="passYear" required></td>
-                          <td><input type="number" min="0" max="100" class="req form-control me-3 my-2" id="percentage" placeholder="don't use % sign" required></td>
-                          <td><input type="number" min="0" max="10" class="req form-control me-3 my-2" id="backlog" placeholder="if any" required></td>
+                        <tr class="fixed-row">
+                          <td><input type="text" class="req form-control me-3 my-0" id="degree" value="10th" disabled required></td>
+                          <td><input type="text" class="req form-control me-3 my-0" id="school" required></td>
+                          <td><input type="date" class="req form-control me-3 my-0" id="startDate" required><span id="startDateError" class="error text-danger"></span></td>
+                          <td><input type="date" class="req form-control me-3 my-0" id="passYear" required></td>
+                          <td><input type="number" min="0" max="100" class="req form-control me-3 my-0" id="percentage" placeholder="don't use % sign" required></td>
+                          <td><input type="number" min="0" max="10" class="req form-control me-3 my-0" id="backlog" placeholder="if any" required></td>
                           <td class="invisible"></td>
                         </tr>
-                        <tr>
-                          <td><input type="text" class="req form-control me-3 my-2" id="degree" value="12th" disabled required></td>
-                          <td><input type="text" class="req form-control me-3 my-2" id="school" required></td>
-                          <td><input type="date" class="req form-control me-3 my-2" id="startDate" required></td>
-                          <td><input type="date" class="req form-control me-3 my-2" id="passYear" required></td>
-                          <td><input type="number" min="0" max="100" class="req form-control me-3 my-2" id="percentage" placeholder="don't use % sign" required></td>
-                          <td><input type="number" min="0" max="10" class="req form-control me-3 my-2" id="backlog" placeholder="if any" required></td>
+                        <tr class="fixed-row">
+                          <td><input type="text" class="req form-control me-3 my-0" id="degree" value="12th" disabled required></td>
+                          <td><input type="text" class="req form-control me-3 my-0" id="school" required></td>
+                          <td><input type="date" class="req form-control me-3 my-0" id="startDate" required><span id="startDateError" class="error text-danger"></span></td>
+                          <td><input type="date" class="req form-control me-3 my-0" id="passYear" required></td>
+                          <td><input type="number" min="0" max="100" class="req form-control me-3 my-0" id="percentage" placeholder="don't use % sign" required></td>
+                          <td><input type="number" min="0" max="10" class="req form-control me-3 my-0" id="backlog" placeholder="if any" required></td>
                           <td class="invisible"></td>
                         </tr>
-                        
                       </tbody>
                     </table>
                 </div>
