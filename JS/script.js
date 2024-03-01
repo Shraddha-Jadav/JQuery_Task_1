@@ -3,6 +3,7 @@ const form = $("#user-form");
 let eduBody = $(".tb");
 let selectedRow = null;
 let allUserData = [];
+let table = $('#form-table').DataTable();
 
 $(".form-control[required]").on("input change blur", validate);
 
@@ -110,17 +111,70 @@ function validate() {
     const inputs = $(this).find("input");
     let startDate = $(this).find("#startDate").val();
     let passYear = $(this).find("#passYear").val();
+    let degree = $(this).find("#degree").val();
+    let school = $(this).find("#school").val();
+    let percentage = $(this).find("#percentage").val();
+    let backlog = $(this).find("#backlog").val();
 
-    if (new Date(startDate) == "") {
-      $(this).find("#startDate").addClass("is-invalid");
-      $(this).find("#startDateError").html("start date can not be empty");
+    if (degree == "") {
+      $(this).find("#degree").addClass("is-invalid");
+      $(this).find("#degreeError").html("This field can not be empty");
+      isValid = false;
+    } 
+    else
+    {
+      $(this).find("#degree").removeClass("is-invalid");
+      $(this).find("#degreeError").html("");
+    }
+    if (school == "") {
+      $(this).find("#school").addClass("is-invalid");
+      $(this).find("#schoolError").html("This field can not be empty");
 
       isValid = false;
     } 
-    if (new Date(passYear) == "") {
-      $(this).find("#startDate").addClass("is-invalid");
-      $(this).find("#startDateError").html("start date can not be empty");
+    else
+    {
+      $(this).find("#school").removeClass("is-invalid");
+      $(this).find("#schoolError").html("");
+    }
+    if (percentage == "") {
+      $(this).find("#percentage").addClass("is-invalid");
+      $(this).find("#percentageError").html("percentage can not be empty");
 
+      isValid = false;
+    } 
+    else
+    {
+      $(this).find("#percentage").removeClass("is-invalid");
+      $(this).find("#percentageError").html("");
+    }
+    if (backlog == "") {
+      $(this).find("#backlog").addClass("is-invalid");
+      $(this).find("#backlogError").html("This field can not be empty");
+
+      isValid = false;
+    } 
+    else
+    {
+      $(this).find("#backlog").removeClass("is-invalid");
+      $(this).find("#backlogError").html("");
+    }
+    
+    if (passYear == "") {
+      $(this).find("#passYear").addClass("is-invalid");
+      $(this).find("#passYearError").html("This field can not be empty");
+
+      isValid = false;
+    } 
+    else
+    {
+      $(this).find("#passYear").removeClass("is-invalid");
+      $(this).find("#passYearError").html("");
+    }
+
+    if (startDate == "") {
+      $(this).find("#startDate").addClass("is-invalid");
+      $(this).find("#startDateError").html("This field can not be empty");
       isValid = false;
     } 
     else if (new Date(startDate) > new Date(passYear)) {
@@ -185,9 +239,8 @@ function readFormData() {
 }
 
 function insertNewRecord(data) {
-  let table = $('#form-table').DataTable();
-  let newRowData = [ 
-    table.rows().count() + 1,
+    let newRowData = [ 
+    (table.rows().count() + 1),
     data.personal.firstName,
     data.personal.lastName,
     data.personal.dob,
@@ -240,12 +293,12 @@ function onEdit(td) {
       {
         let newRow = $("<tr></tr>").html(
           `
-            <td><input type="text" id="degree" class="form-control" value="${eduData.degree}" required></td>
-            <td><input type="text" id="school" class="form-control" value="${eduData.school}" required></td>
+            <td><input type="text" id="degree" class="form-control" value="${eduData.degree}" required><span id="degreeError" class="error text-danger"></span></td>
+            <td><input type="text" id="school" class="form-control" value="${eduData.school}" required><span id="schoolDateError" class="error text-danger"></span></td>
             <td><input type="date" id="startDate" class="form-control" value="${eduData.startDate}" required><span id="startDateError" class="error text-danger"></span></td>
-            <td><input type="date" id="passYear" class="form-control" value="${eduData.passYear}" required>
-            <td><input type="number" id="percentage" class="form-control" value="${eduData.percentage}" required></td>
-            <td><input type="number" id="backlog" class="form-control" value="${eduData.backlog}" required></td>
+            <td><input type="date" id="passYear" class="form-control" value="${eduData.passYear}" required><span id="passYearError" class="error text-danger"></span></td>
+            <td><input type="number" id="percentage" class="form-control" value="${eduData.percentage}" required><span id="percentageError" class="error text-danger"></span></td>
+            <td><input type="number" id="backlog" class="form-control" value="${eduData.backlog}" required><span id="backlogError" class="error text-danger"></td>
             <td></td>
           `
         );index++;
@@ -255,12 +308,12 @@ function onEdit(td) {
       {
         let newRow = $("<tr></tr>").html(
           `
-            <td><input type="text" id="degree" class="form-control" value="${eduData.degree}" required></td>
-            <td><input type="text" id="school" class="form-control" value="${eduData.school}" required></td>
-            <td><input type="date" id="startDate" class="form-control" value="${eduData.startDate}" required></td><span id="startDateError" class="error d-inline-block text-danger"></span>
-            <td><input type="date" id="passYear" class="form-control" value="${eduData.passYear}" required></td><span id="passYearError" class="error"></span>
-            <td><input type="number" id="percentage" class="form-control" value="${eduData.percentage}" required></td>
-            <td><input type="number" id="backlog" class="form-control" value="${eduData.backlog}" required></td>
+          <td><input type="text" id="degree" class="form-control" value="${eduData.degree}" required><span id="degreeError" class="error text-danger"></span></td>
+          <td><input type="text" id="school" class="form-control" value="${eduData.school}" required><span id="schoolDateError" class="error text-danger"></span></td>
+          <td><input type="date" id="startDate" class="form-control" value="${eduData.startDate}" required><span id="startDateError" class="error text-danger"></span></td>
+          <td><input type="date" id="passYear" class="form-control" value="${eduData.passYear}" required><span id="passYearError" class="error text-danger"></span></td>
+          <td><input type="number" id="percentage" class="form-control" value="${eduData.percentage}" required><span id="percentageError" class="error text-danger"></span></td>
+          <td><input type="number" id="backlog" class="form-control" value="${eduData.backlog}" required><span id="backlogError" class="error text-danger"></td>
             <td><a class="delete" onclick="removeUpdatedEduRow()">&times</a></td>
           `
         );index++;
@@ -286,21 +339,21 @@ function updateRecord(formData) {
   resetForm();
 
   eduBody.html(`<tr>
-  <td><input type="text" class="form-control me-3 my-2" id="degree" value="10th" disabled reqired></td>
-  <td><input type="text" class="form-control me-3 my-2" id="school" reqired></td>
-  <td><input type="date" class="form-control me-3 my-2" id="startDate" reqired><span id="startDateError" class="error d-inline-block text-danger"></span></td>
-  <td><input type="date" class="form-control me-3 my-2" id="passYear" reqired></td>
-  <td><input type="number" min="0" max="100" class="form-control me-3 my-2" id="percentage" placeholder="don't use % sign" reqired></td>
-  <td><input type="number" min="0" max="10" class="form-control me-3 my-2" id="backlog" placeholder="if any" reqired></td>
+  <td><input type="text" class="form-control me-3 my-2" id="degree" value="10th" disabled reqired><span id="degreeError" class="error text-danger"></span></td>
+  <td><input type="text" class="form-control me-3 my-2" id="school" reqired><span id="schoolDateError" class="error text-danger"></span></td>
+  <td><input type="date" class="form-control me-3 my-2" id="startDate" reqired><span id="startDateError" class="error text-danger"></span></td>
+  <td><input type="date" class="form-control me-3 my-2" id="passYear" reqired><span id="startDateError" class="error text-danger"></span></td>
+  <td><input type="number" min="0" max="100" class="form-control me-3 my-2" id="percentage" placeholder="don't use % sign" reqired><span id="percentageError" class="error text-danger"></span></td>
+  <td><input type="number" min="0" max="10" class="form-control me-3 my-2" id="backlog" placeholder="if any" reqired><span id="backlogError" class="error text-danger"></span></td>
   <td class="invisible"></td>
 </tr>
 <tr>
-  <td><input type="text" class="form-control me-3 my-2" id="degree" value="12th" disabled reqired></td>
-  <td><input type="text" class="form-control me-3 my-2" id="school" reqired></td>
-  <td><input type="date" class="form-control me-3 my-2" id="startDate" reqired><span id="startDateError" class="error d-inline-block text-danger"></span></td>
-  <td><input type="date" class="form-control me-3 my-2" id="passYear" reqired></td>
-  <td><input type="number" min="0" max="100" class="form-control me-3 my-2" id="percentage" placeholder="don't use % sign" reqired></td>
-  <td><input type="number" min="0" max="10" class="form-control me-3 my-2" id="backlog" placeholder="if any" reqired></td>
+  <td><input type="text" class="form-control me-3 my-2" id="degree" value="12th" disabled reqired><span id="degreeError" class="error text-danger"></span></td>
+  <td><input type="text" class="form-control me-3 my-2" id="school" reqired><span id="schoolDateError" class="error text-danger"></span></td>
+  <td><input type="date" class="form-control me-3 my-2" id="startDate" reqired><span id="startDateError" class="error text-danger"></span></td>
+  <td><input type="date" class="form-control me-3 my-2" id="passYear" reqired><span id="startDateError" class="error text-danger"></span></td>
+  <td><input type="number" min="0" max="100" class="form-control me-3 my-2" id="percentage" placeholder="don't use % sign" reqired><span id="percentageError" class="error text-danger"></span></td>
+  <td><input type="number" min="0" max="10" class="form-control me-3 my-2" id="backlog" placeholder="if any" reqired><span id="backlogError" class="error text-danger"></span></td>
   <td class="invisible"></td>
 </tr>`);
 
@@ -364,4 +417,4 @@ function removeUpdatedEduRow() {
   let btn = $(event.target);
   let row = btn.parent().parent();
   row.remove();
-} 
+}
